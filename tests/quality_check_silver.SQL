@@ -140,7 +140,7 @@ Usage Notes:
     -- Data Standarization & Consistency
     SELECT DISTINCT
         gen
-    FROM silver.erp_CUST_AZ12
+    FROM silver.erp_CUST_AZ12;
     
     -- ===============================================================
     -- Checking 'silver.erp_LOC_A101'
@@ -149,13 +149,13 @@ Usage Notes:
     SELECT 
         REPLACE(cid, '-' , '') AS cid,
         cntry
-    FROM silver.erp_LOC_A101
+    FROM silver.erp_LOC_A101;
     
     --Date standarization & Consistency
     SELECT DISTINCT
         cntry
     FROM silver.erp_LOC_A101
-    ORDER BY cntry
+    ORDER BY cntry;
     
     -- ===============================================================
     -- Checking 'silver.erp_PX_CAT_G1V2'
@@ -172,4 +172,4 @@ Usage Notes:
     -- Data standarization & Consistency
     SELECT DISTINCT 
         maintenance 
-    FROM silver.erp_PX_CAT_G1V2
+    FROM silver.erp_PX_CAT_G1V2;
