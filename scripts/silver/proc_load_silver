@@ -241,5 +241,5 @@ BEGIN
         PRINT 'ERROR MESSAGE' + CAST(ERROR_STATE() AS NVARCHAR);
         PRINT '==============================================='
 	END CATCH
-END
+END;
 
