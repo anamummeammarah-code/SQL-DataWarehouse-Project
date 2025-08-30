@@ -148,7 +148,6 @@ Usage Notes:
     -- ===============================================================
     -- Checking 'silver.erp_LOC_A101'
     -- ===============================================================
-    
     -- Normalization Check
     SELECT 
         REPLACE(cid, '-' , '') AS cid,
@@ -164,7 +163,6 @@ Usage Notes:
     -- ===============================================================
     -- Checking 'silver.erp_PX_CAT_G1V2'
     -- ===============================================================
-    
     -- Check the unwanted Spaces
     -- Expectation: No Results
     SELECT 
