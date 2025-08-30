@@ -151,15 +151,15 @@ BEGIN
         SET @batch_end_time = GETDATE();
         PRINT'====================================';
         PRINT'Loading Bronze Layer is completed';
-        PRINT    '- Total Load Duration: ' + CAST(DATEDIFF(second,@batch_start_time,@batch_end_time) AS NVARCHAR) + ' Seconds';
+        PRINT    '- Total Load Duration: ' + CAST(DATEDIFF(second, @batch_start_time, @batch_end_time) AS NVARCHAR) + ' Seconds';
         PRINT'====================================';
     END TRY
     BEGIN CATCH
-        PRINT '==============================================='
+        PRINT '=================================================='
         PRINT 'ERROR OCCURED DURING LAODING THE BRONZE LAYER'
         PRINT 'ERROR MESSAGE' + ERROR_MESSAGE();
         PRINT 'ERROR MESSAGE' + CAST(ERROR_NUMBER() AS NVARCHAR);
         PRINT 'ERROR MESSAGE' + CAST(ERROR_STATE() AS NVARCHAR);
-        PRINT '==============================================='
+        PRINT '=================================================='
     END CATCH
 END
