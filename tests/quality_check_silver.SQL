@@ -102,7 +102,6 @@ Usage Notes:
     
     -- Checks Data Consistency: Sales = Quantity * Price
     -- Expectation: No Results
-    
     SELECT DISTINCT
         sls_sales,
         sls_quantity,
@@ -116,9 +115,7 @@ Usage Notes:
         OR sls_quantity <= 0 
         OR sls_price <= 0 
     ORDER BY sls_sales, sls_quantity, sls_price;
-    
-    SELECT * FROM silver.crm_sales_details
-    
+
     -- ===============================================================
     -- Checking 'silver.erp_CUST_AZ12'
     -- ===============================================================
