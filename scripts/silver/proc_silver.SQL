@@ -32,6 +32,7 @@ BEGIN
   		PRINT '-------------------------------------------------';
 
 		-- Lodaing silver.crm_cust_info
+
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating table: silver.crm_cust_info';
 		TRUNCATE TABLE silver.crm_cust_info;
@@ -74,6 +75,7 @@ BEGIN
         PRINT '>> --------------'
 
 		-- Loading silver.crm_prd_info
+
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating table: silver.crm_prd_info'
 		TRUNCATE TABLE silver.crm_prd_info
@@ -113,6 +115,7 @@ BEGIN
         PRINT '>> --------------'
 
 		-- loading silver.crm_sales_details
+
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating table: silver.crm_sales_details'
 		TRUNCATE TABLE silver.crm_sales_details
@@ -161,6 +164,7 @@ BEGIN
 	    PRINT '-------------------------------------------------';
 
 		-- Loading silver.erp_CUST_AZ12
+
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating table: silver.erp_CUST_AZ12'
 		TRUNCATE TABLE silver.erp_CUST_AZ12 
@@ -189,6 +193,7 @@ BEGIN
         PRINT '>> --------------'
 
 		-- Loading silver.erp_LOC_A101
+
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating table: silver.erp_LOC_A101'
 		TRUNCATE TABLE silver.erp_LOC_A101
@@ -210,6 +215,7 @@ BEGIN
         PRINT '>> --------------'
 
 		-- Loading silver.erp_PX_CAT_G1V2
+
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating table: silver.erp_PX_CAT_G1V2'
 		TRUNCATE TABLE silver.erp_PX_CAT_G1V2 
