@@ -12,10 +12,10 @@ Script purpose:
 -- Create DDL for datasets
 
   IF OBJECT_ID ('bronze.crm_cust_info','U') IS NOT NULL
-    DROP TABLE  bronze.crm_cust_info;
+    DROP TABLE bronze.crm_cust_info;
   GO
   
-  CREATE TABLE  bronze.crm_cust_info (
+  CREATE TABLE bronze.crm_cust_info (
    cst_id             INT,
    cst_key            NVARCHAR(50),
    cst_firstname      NVARCHAR(50),
@@ -27,7 +27,7 @@ Script purpose:
   GO
   
   IF OBJECT_ID ('bronze.crm_prd_info','U') IS NOT NULL
-    DROP TABLE  bronze.crm_prd_info;
+    DROP TABLE bronze.crm_prd_info;
   GO
   
   CREATE TABLE bronze.crm_prd_info (
@@ -42,10 +42,10 @@ Script purpose:
   GO
   
   IF OBJECT_ID ('bronze.crm_sales_details','U') IS NOT NULL
-    DROP TABLE  bronze.crm_sales_details;
+    DROP TABLE bronze.crm_sales_details;
   GO
   
-  CREATE TABLE  bronze.crm_sales_details (
+  CREATE TABLE bronze.crm_sales_details (
     sls_ord_num     NVARCHAR(50),
     sls_prd_key     NVARCHAR(50),
     sls_cust_id     INT,
@@ -59,7 +59,7 @@ Script purpose:
   GO
   
   IF OBJECT_ID ('Bronze.erp_CUST_AZ12','U') IS NOT NULL
-    DROP TABLE  Bronze.erp_CUST_AZ12;
+    DROP TABLE Bronze.erp_CUST_AZ12;
   GO
   
   CREATE TABLE Bronze.erp_CUST_AZ12 (
@@ -69,19 +69,19 @@ Script purpose:
   )
   
   IF OBJECT_ID ('Bronze.erp_LOC_A101','U') IS NOT NULL
-    DROP TABLE  Bronze.erp_LOC_A101;
+    DROP TABLE Bronze.erp_LOC_A101;
   GO
   
-  CREATE TABLE  Bronze.erp_LOC_A101 (
+  CREATE TABLE Bronze.erp_LOC_A101 (
     CID         NVARCHAR(50),
     CNTRY       NVARCHAR(50)
   );
   GO
   
   IF OBJECT_ID ('Bronze.erp_PX_CAT_G1V2','U') IS NOT NULL
-    DROP TABLE  Bronze.erp_PX_CAT_G1V2;
+    DROP TABLE Bronze.erp_PX_CAT_G1V2;
   GO
-  CREATE TABLE  Bronze.erp_PX_CAT_G1V2 (
+  CREATE TABLE Bronze.erp_PX_CAT_G1V2 (
     ID              NVARCHAR(50),
     CAT             NVARCHAR(50),
     SUBCAT          NVARCHAR(50),
