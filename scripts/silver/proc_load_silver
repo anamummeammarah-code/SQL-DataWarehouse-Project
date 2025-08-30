@@ -108,7 +108,7 @@ BEGIN
 				AS DATE
 			) AS prd_end_dt -- Calculate end date as one day begore the next start date
 		FROM bronze.crm_prd_info
-		SET @end_time=GETDATE();
+		SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
@@ -152,7 +152,7 @@ BEGIN
 			 ELSE sls_price -- Derive price if the original value is invalid
 		END AS sls_price
 		FROM bronze.crm_sales_details
-		SET @end_time=GETDATE();
+		SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
@@ -184,7 +184,7 @@ BEGIN
 				ELSE 'N/A'
 			END AS GEN --  Normalize gender values and handle unknown cases
 		FROM bronze.erp_CUST_AZ12
-		SET @end_time=GETDATE();
+		SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
@@ -205,7 +205,7 @@ BEGIN
 				ELSE (TRIM(CNTRY))
 			END AS CNTRY -- Normalize and Handle missing or blank country codes
 		FROM bronze.erp_LOC_A101
-		SET @end_time=GETDATE();
+		SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
@@ -222,7 +222,7 @@ BEGIN
 			SUBCAT,
 			MAINTENANCE
 		FROM bronze.erp_PX_CAT_G1V2
-		SET @end_time=GETDATE();
+		SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
