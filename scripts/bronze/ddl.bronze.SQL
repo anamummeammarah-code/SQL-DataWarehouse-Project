@@ -63,9 +63,9 @@ Script purpose:
   GO
   
   CREATE TABLE Bronze.erp_CUST_AZ12 (
-    CID          NVARCHAR(50),
-    BDATE        DATE,
-    GEN          NVARCHAR(50)
+    id          NVARCHAR(50),
+    bdate       DATE,
+    gen         NVARCHAR(50)
   )
   
   IF OBJECT_ID ('Bronze.erp_LOC_A101','U') IS NOT NULL
@@ -73,19 +73,20 @@ Script purpose:
   GO
   
   CREATE TABLE Bronze.erp_LOC_A101 (
-    CID         NVARCHAR(50),
-    CNTRY       NVARCHAR(50)
+    cid         NVARCHAR(50),
+    cntry       NVARCHAR(50)
   );
   GO
   
   IF OBJECT_ID ('Bronze.erp_PX_CAT_G1V2','U') IS NOT NULL
         DROP TABLE Bronze.erp_PX_CAT_G1V2;
   GO
+
   CREATE TABLE Bronze.erp_PX_CAT_G1V2 (
-    ID              NVARCHAR(50),
-    CAT             NVARCHAR(50),
-    SUBCAT          NVARCHAR(50),
-    MAINTENANCE     NVARCHAR(50)
+    id              NVARCHAR(50),
+    cat             NVARCHAR(50),
+    subcat          NVARCHAR(50),
+    maintenance     NVARCHAR(50)
   );
   GO
   
