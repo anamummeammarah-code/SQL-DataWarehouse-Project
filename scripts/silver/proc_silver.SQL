@@ -31,7 +31,7 @@ BEGIN
   		PRINT 'Loading CRM Tables';
   		PRINT '-------------------------------------------------';
 
-		-- Lodaing silver.crm_cust_info
+		-- Loading silver.crm_cust_info
 
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating table: silver.crm_cust_info';
@@ -71,7 +71,7 @@ BEGIN
 		) t 
 		WHERE Flag_last = 1; -- Select most recent record per customer
 		SET @end_time=GETDATE();
-        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
+        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
 		-- Loading silver.crm_prd_info
@@ -111,10 +111,10 @@ BEGIN
 			) AS prd_end_dt -- Calculate end date as one day begore the next start date
 		FROM bronze.crm_prd_info
 		SET @end_time = GETDATE();
-        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
+        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
-		-- loading silver.crm_sales_details
+		-- Loading silver.crm_sales_details
 
 		SET @start_time = GETDATE();
 		PRINT '>> Truncating table: silver.crm_sales_details'
@@ -133,30 +133,30 @@ BEGIN
 			sls_price
 		)
 		SELECT 
-		sls_ord_num,
-		sls_prd_key,
-		sls_cust_id,
-		CASE WHEN sls_order_dt = 0 OR LEN(sls_order_dt) <> 8 THEN NULL 
-			ELSE TRY_CAST(CAST(sls_order_dt AS VARCHAR) AS DATE)
-		END AS sls_order_dt,
-		CASE WHEN sls_ship_dt = 0 THEN NULL 
-			ELSE TRY_CAST(CAST(sls_ship_dt AS VARCHAR) AS DATE)
-		END AS sls_ship_dt,
-		CASE WHEN sls_due_dt = 0 THEN NULL 
-			ELSE TRY_CAST(CAST(sls_due_dt AS VARCHAR) AS DATE)
-		END AS sls_due_dt,
-		CASE WHEN sls_sales IS NULL OR sls_sales <= 0 OR sls_sales <> sls_quantity * ABS(sls_price)
-				THEN sls_quantity * ABS(sls_price)
-			 ELSE sls_sales
-		END AS sls_sales, -- Recalculate sales if original value is missing or incorrect
-		sls_quantity,
-		CASE WHEN sls_price IS NULL OR sls_price <= 0 
-				THEN sls_sales / NULLIF(sls_quantity,0)
-			 ELSE sls_price -- Derive price if the original value is invalid
-		END AS sls_price
-		FROM bronze.crm_sales_details
+			sls_ord_num,
+			sls_prd_key,
+			sls_cust_id,
+			CASE WHEN sls_order_dt = 0 OR LEN(sls_order_dt) <> 8 THEN NULL 
+				ELSE TRY_CAST(CAST(sls_order_dt AS VARCHAR) AS DATE)
+			END AS sls_order_dt,
+			CASE WHEN sls_ship_dt = 0 THEN NULL 
+				ELSE TRY_CAST(CAST(sls_ship_dt AS VARCHAR) AS DATE)
+			END AS sls_ship_dt,
+			CASE WHEN sls_due_dt = 0 THEN NULL 
+				ELSE TRY_CAST(CAST(sls_due_dt AS VARCHAR) AS DATE)
+			END AS sls_due_dt,
+			CASE WHEN sls_sales IS NULL OR sls_sales <= 0 OR sls_sales <> sls_quantity * ABS(sls_price)
+					THEN sls_quantity * ABS(sls_price)
+				 ELSE sls_sales
+			END AS sls_sales, -- Recalculate sales if original value is missing or incorrect
+			sls_quantity,
+			CASE WHEN sls_price IS NULL OR sls_price <= 0 
+					THEN sls_sales / NULLIF(sls_quantity,0)
+				 ELSE sls_price -- Derive price if the original value is invalid
+			END AS sls_price
+			FROM bronze.crm_sales_details
 		SET @end_time = GETDATE();
-        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
+        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
 	    PRINT '-------------------------------------------------';
@@ -170,26 +170,26 @@ BEGIN
 		TRUNCATE TABLE silver.erp_CUST_AZ12 
 
 		PRINT '>> Inserting Data Into: silver.erp_CUST_AZ12'
-		INSERT INTO silver.erp_CUST_AZ12 (CID, BDATE, GEN)
+		INSERT INTO silver.erp_CUST_AZ12 (cid, bdate, gen)
 		SELECT
 			CASE
-				WHEN CID LIKE 'NAS%' THEN SUBSTRING(CID, 4, LEN(CID)) -- Remove 'NAS' perfix if present
-				ELSE CID
-			END AS CID,
+				WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid, 4, LEN(cid)) -- Remove 'NAS' perfix if present
+				ELSE cid
+			END AS cid,
 			CASE 
-				WHEN BDATE > GETDATE() THEN NULL
-				ELSE BDATE
-			END AS BDATE, -- Set future birthdate to NULL
+				WHEN bdate > GETDATE() THEN NULL
+				ELSE bdate
+			END AS bdate, -- Set future birthdate to NULL
 			CASE 
-				WHEN UPPER(TRIM(GEN)) = 'F' THEN 'Female'
-				WHEN UPPER(TRIM(GEN)) = 'M' THEN 'Male'
-				WHEN UPPER(TRIM(GEN)) = 'Female' THEN 'Female'
-				WHEN UPPER(TRIM(GEN)) = 'Male' THEN 'Male'
+				WHEN UPPER(TRIM(gen)) = 'F' THEN 'Female'
+				WHEN UPPER(TRIM(gen)) = 'M' THEN 'Male'
+				WHEN UPPER(TRIM(gen)) = 'Female' THEN 'Female'
+				WHEN UPPER(TRIM(gen)) = 'Male' THEN 'Male'
 				ELSE 'N/A'
 			END AS GEN --  Normalize gender values and handle unknown cases
 		FROM bronze.erp_CUST_AZ12
 		SET @end_time = GETDATE();
-        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
+        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
 		-- Loading silver.erp_LOC_A101
@@ -199,19 +199,19 @@ BEGIN
 		TRUNCATE TABLE silver.erp_LOC_A101
 
 		PRINT '>> Inserting Data Into: silver.erp_LOC_A1012'
-		INSERT INTO SILVER.erp_LOC_A101 (CID, CNTRY)
+		INSERT INTO SILVER.erp_LOC_A101 (cid, cntry)
 		SELECT 
-			REPLACE(CID, '-' , '') AS CID,
+			REPLACE(cid, '-' , '') AS cid,
 			CASE 
-				WHEN UPPER(TRIM(CNTRY)) = 'DE' THEN 'Germany'
-				WHEN UPPER(TRIM(CNTRY)) = 'USA'THEN 'United States'
-				WHEN UPPER(TRIM(CNTRY)) = 'US' THEN 'United States'
-				WHEN UPPER(TRIM(CNTRY)) = ''OR CNTRY IS NULL THEN 'N/A'
-				ELSE (TRIM(CNTRY))
-			END AS CNTRY -- Normalize and Handle missing or blank country codes
+				WHEN UPPER(TRIM(cntry)) = 'DE' THEN 'Germany'
+				WHEN UPPER(TRIM(cntry)) = 'USA'THEN 'United States'
+				WHEN UPPER(TRIM(cntry)) = 'US' THEN 'United States'
+				WHEN UPPER(TRIM(cntry)) = ''OR CNTRY IS NULL THEN 'N/A'
+				ELSE (TRIM(cntry))
+			END AS cntry -- Normalize and Handle missing or blank country codes
 		FROM bronze.erp_LOC_A101
 		SET @end_time = GETDATE();
-        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
+        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
 		-- Loading silver.erp_PX_CAT_G1V2
@@ -221,21 +221,21 @@ BEGIN
 		TRUNCATE TABLE silver.erp_PX_CAT_G1V2 
 
 		PRINT '>> Inserting Data Into: silver.erp_PX_CAT_G1V2'
-		INSERT INTO silver.erp_PX_CAT_G1V2 (ID, CAT, SUBCAT, MAINTENANCE)
+		INSERT INTO silver.erp_PX_CAT_G1V2 (id, cat, subcat, maintenance)
 		SELECT 
-			ID,
-			CAT,
-			SUBCAT,
-			MAINTENANCE
+			id,
+			cat,
+			subcat,
+			maintenance
 		FROM bronze.erp_PX_CAT_G1V2
 		SET @end_time = GETDATE();
-        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
+        PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
 		SET @batch_end_time = GETDATE();
 		PRINT'====================================';
         PRINT'Loading Silver Layer is completed';
-        PRINT    '- Total Load Duration: '  + CAST(DATEDIFF(second,@batch_start_time,@batch_end_time) AS NVARCHAR) + ' Seconds';
+        PRINT    '- Total Load Duration: '  + CAST(DATEDIFF(second, @batch_start_time, @batch_end_time) AS NVARCHAR) + ' Seconds';
         PRINT'====================================';
 
 	END TRY 
