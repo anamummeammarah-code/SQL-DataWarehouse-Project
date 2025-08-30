@@ -173,7 +173,3 @@ Usage Notes:
     SELECT DISTINCT 
         maintenance 
     FROM silver.erp_PX_CAT_G1V2
-    
-    
-    
-    
