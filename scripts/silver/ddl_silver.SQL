@@ -3,9 +3,9 @@
 DDL Script: Create Silver Layer
 ===================================================================================
 Script purpose:
-  This script create tables in the 'Silver' schemas, dropped existing tables 
-  if theey already exist.
-    Run this script to re-define the DDL structure of 'Silver' Tables
+    This script create tables in the 'Silver' schemas, dropped existing tables 
+    if theey already exist.
+        Run this script to re-define the DDL structure of 'Silver' Tables
 ===================================================================================
 */
 
