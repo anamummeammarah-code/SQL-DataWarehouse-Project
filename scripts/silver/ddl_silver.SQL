@@ -12,10 +12,10 @@ Script purpose:
 -- Create DDL for datasets
 
   IF OBJECT_ID ('silver.crm_cust_info','U') IS NOT NULL
-    DROP TABLE  silver.crm_cust_info;
+        DROP TABLE silver.crm_cust_info;
   GO
   
-  CREATE TABLE  silver.crm_cust_info (
+  CREATE TABLE silver.crm_cust_info (
    cst_id             INT,
    cst_key            NVARCHAR(50),
    cst_firstname      NVARCHAR(50),
@@ -27,7 +27,7 @@ Script purpose:
   GO
   
   IF OBJECT_ID ('silver.crm_prd_info','U') IS NOT NULL
-    DROP TABLE  silver.crm_prd_info;
+        DROP TABLE silver.crm_prd_info;
   GO
   
   CREATE TABLE  silver.crm_prd_info (
@@ -42,10 +42,10 @@ Script purpose:
   GO
   
   IF OBJECT_ID ('silver.crm_sales_details','U') IS NOT NULL
-    DROP TABLE  silver.crm_sales_details;
+        DROP TABLE silver.crm_sales_details;
   GO
   
-  CREATE TABLE  silver.crm_sales_details (
+  CREATE TABLE silver.crm_sales_details (
     sls_ord_num     NVARCHAR(50),
     sls_prd_key     NVARCHAR(50),
     sls_cust_id     INT,
@@ -59,17 +59,17 @@ Script purpose:
   GO
   
   IF OBJECT_ID ('silver.erp_CUST_AZ12','U') IS NOT NULL
-    DROP TABLE  silver.erp_CUST_AZ12;
+        DROP TABLE silver.erp_CUST_AZ12;
   GO
   
-  CREATE TABLE  silver.erp_CUST_AZ12 (
+  CREATE TABLE silver.erp_CUST_AZ12 (
     CID          NVARCHAR(50),
     BDATE        DATE,
     GEN          NVARCHAR(50)
   )
   
   IF OBJECT_ID ('silver.erp_LOC_A101','U') IS NOT NULL
-    DROP TABLE  silver.erp_LOC_A101;
+        DROP TABLE silver.erp_LOC_A101;
   GO
   
   CREATE TABLE silver.erp_LOC_A101 (
@@ -79,7 +79,7 @@ Script purpose:
   GO
   
   IF OBJECT_ID ('silver.erp_PX_CAT_G1V2','U') IS NOT NULL
-    DROP TABLE  silver.erp_PX_CAT_G1V2;
+        DROP TABLE silver.erp_PX_CAT_G1V2;
   GO
   CREATE TABLE silver.erp_PX_CAT_G1V2 (
     ID              NVARCHAR(50),
