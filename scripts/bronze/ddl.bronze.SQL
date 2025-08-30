@@ -58,31 +58,31 @@ Script purpose:
   );
   GO
   
-  IF OBJECT_ID ('Bronze.erp_CUST_AZ12','U') IS NOT NULL
-        DROP TABLE Bronze.erp_CUST_AZ12;
+  IF OBJECT_ID ('bronze.erp_CUST_AZ12','U') IS NOT NULL
+        DROP TABLE bronze.erp_CUST_AZ12;
   GO
   
-  CREATE TABLE Bronze.erp_CUST_AZ12 (
+  CREATE TABLE bronze.erp_CUST_AZ12 (
     id          NVARCHAR(50),
     bdate       DATE,
     gen         NVARCHAR(50)
   )
   
-  IF OBJECT_ID ('Bronze.erp_LOC_A101','U') IS NOT NULL
-        DROP TABLE Bronze.erp_LOC_A101;
+  IF OBJECT_ID ('bronze.erp_LOC_A101','U') IS NOT NULL
+        DROP TABLE bronze.erp_LOC_A101;
   GO
   
-  CREATE TABLE Bronze.erp_LOC_A101 (
+  CREATE TABLE bronze.erp_LOC_A101 (
     cid         NVARCHAR(50),
     cntry       NVARCHAR(50)
   );
   GO
   
-  IF OBJECT_ID ('Bronze.erp_PX_CAT_G1V2','U') IS NOT NULL
-        DROP TABLE Bronze.erp_PX_CAT_G1V2;
+  IF OBJECT_ID ('bronze.erp_PX_CAT_G1V2','U') IS NOT NULL
+        DROP TABLE bronze.erp_PX_CAT_G1V2;
   GO
 
-  CREATE TABLE Bronze.erp_PX_CAT_G1V2 (
+  CREATE TABLE bronze.erp_PX_CAT_G1V2 (
     id              NVARCHAR(50),
     cat             NVARCHAR(50),
     subcat          NVARCHAR(50),
