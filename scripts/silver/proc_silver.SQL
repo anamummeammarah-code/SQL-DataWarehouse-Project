@@ -27,9 +27,9 @@ BEGIN
 			PRINT 'Loading Silver Layer';
 			PRINT '=================================================';
 	
-  	    PRINT '-------------------------------------------------';
-  		PRINT 'Loading CRM Tables';
-  		PRINT '-------------------------------------------------';
+	  	    PRINT '-------------------------------------------------';
+	  		PRINT 'Loading CRM Tables';
+	  		PRINT '-------------------------------------------------';
 
 		-- Loading silver.crm_cust_info
 
@@ -159,9 +159,9 @@ BEGIN
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' Seconds';
         PRINT '>> --------------'
 
-	    PRINT '-------------------------------------------------';
-	    PRINT 'Loading ERP Tables';
-	    PRINT '-------------------------------------------------';
+		    PRINT '-------------------------------------------------';
+		    PRINT 'Loading ERP Tables';
+		    PRINT '-------------------------------------------------';
 
 		-- Loading silver.erp_CUST_AZ12
 
