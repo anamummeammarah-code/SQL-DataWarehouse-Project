@@ -22,13 +22,13 @@ BEGIN
     DECLARE @start_time DATETIME, @end_time DATETIME,@batch_start_time DATETIME,@batch_end_time DATETIME;
     BEGIN TRY
         SET @batch_start_time = GETDATE();
-        PRINT '==============================';
+        PRINT '==================================================';
         PRINT 'Loading Bronze Layer';
-        PRINT '==============================';
+        PRINT '==================================================';
 
-        PRINT '--------------------------------';
+        PRINT '--------------------------------------------------';
         PRINT 'Loading CRM Tables';
-        PRINT '--------------------------------';
+        PRINT '--------------------------------------------------';
 
         SET @start_time = GETDATE();
         PRINT '>> Truncating Table: bronze.crm_cust_info'
@@ -43,7 +43,7 @@ BEGIN
             FIELDTERMINATOR = ',',
             TABLOCK
         );
-        SET @end_time=GETDATE();
+        SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
         PRINT'--------------'
 
@@ -83,9 +83,9 @@ BEGIN
         PRINT'--------------'
 
 
-        PRINT '--------------------------------';
+        PRINT '--------------------------------------------------';
         PRINT 'Loading ERP Tables';
-        PRINT '--------------------------------';
+        PRINT '--------------------------------------------------';
 
         SET @start_time = GETDATE();
         PRINT '>> Truncating Table: Bronze.erp_LOC_A101';
@@ -139,6 +139,7 @@ BEGIN
         SET @end_time=GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
         PRINT'--------------'
+
         SET @batch_end_time = GETDATE();
         PRINT'====================================';
         PRINT'Loading Bronze Layer is completed';
