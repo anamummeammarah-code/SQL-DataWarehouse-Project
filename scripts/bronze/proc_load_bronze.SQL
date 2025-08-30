@@ -19,16 +19,16 @@ Usage Example:
 
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS 
 BEGIN  
-    DECLARE @start_time DATETIME, @end_time DATETIME,@batch_start_time DATETIME,@batch_end_time DATETIME;
+    DECLARE @start_time DATETIME , @end_time DATETIME , @batch_start_time DATETIME , @batch_end_time DATETIME;
     BEGIN TRY
         SET @batch_start_time = GETDATE();
-        PRINT '==================================================';
-        PRINT 'Loading Bronze Layer';
-        PRINT '==================================================';
-
-        PRINT '--------------------------------------------------';
-        PRINT 'Loading CRM Tables';
-        PRINT '--------------------------------------------------';
+            PRINT '==================================================';
+            PRINT 'Loading Bronze Layer';
+            PRINT '==================================================';
+    
+            PRINT '--------------------------------------------------';
+            PRINT 'Loading CRM Tables';
+            PRINT '--------------------------------------------------';
 
         SET @start_time = GETDATE();
         PRINT '>> Truncating Table: bronze.crm_cust_info'
@@ -45,7 +45,7 @@ BEGIN
         );
         SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
-        PRINT'--------------'
+        PRINT '>> --------------'
 
         SET @start_time = GETDATE();
         PRINT '>> Truncating Table: bronze.crm_prd_info';
@@ -60,9 +60,9 @@ BEGIN
             FIELDTERMINATOR = ',',
             TABLOCK
         );
-        SET @end_time=GETDATE();
+        SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
-        PRINT'--------------'
+        PRINT '>> --------------'
 
 
         SET @start_time = GETDATE();
@@ -78,13 +78,13 @@ BEGIN
             FIELDTERMINATOR = ',',
             TABLOCK
         );
-        SET @end_time=GETDATE();
+        SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
-        PRINT'--------------'
+        PRINT '>> --------------'
 
-        PRINT '--------------------------------------------------';
-        PRINT 'Loading ERP Tables';
-        PRINT '--------------------------------------------------';
+            PRINT '--------------------------------------------------';
+            PRINT 'Loading ERP Tables';
+            PRINT '--------------------------------------------------';
 
         SET @start_time = GETDATE();
         PRINT '>> Truncating Table: Bronze.erp_LOC_A101';
@@ -99,9 +99,9 @@ BEGIN
             FIELDTERMINATOR = ',',
             TABLOCK
         );
-        SET @end_time=GETDATE();
+        SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
-        PRINT'--------------'
+        PRINT '>> --------------'
 
 
         SET @start_time = GETDATE();
@@ -117,9 +117,9 @@ BEGIN
             FIELDTERMINATOR = ',',
             TABLOCK
         );
-        SET @end_time=GETDATE();
+        SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
-        PRINT'--------------'
+        PRINT '>> --------------'
 
 
         SET @start_time = GETDATE();
@@ -135,9 +135,9 @@ BEGIN
             FIELDTERMINATOR = ',',
             TABLOCK
         );
-        SET @end_time=GETDATE();
+        SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' +  CAST(DATEDIFF(second,@start_time,@end_time) AS NVARCHAR) + ' Seconds';
-        PRINT'--------------'
+        PRINT '>> --------------'
 
         SET @batch_end_time = GETDATE();
         PRINT'====================================';
@@ -154,5 +154,3 @@ BEGIN
         PRINT '==============================================='
     END CATCH
 END
-
-
