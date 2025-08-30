@@ -234,12 +234,12 @@ BEGIN
 
 	END TRY 
 	BEGIN CATCH
-		PRINT '==============================================='
+		PRINT '===============================================';
         PRINT 'ERROR OCCURED DURING LAODING THE SILVER LAYER'
         PRINT 'ERROR MESSAGE' + ERROR_MESSAGE();
         PRINT 'ERROR MESSAGE' + CAST(ERROR_NUMBER() AS NVARCHAR);
         PRINT 'ERROR MESSAGE' + CAST(ERROR_STATE() AS NVARCHAR);
-        PRINT '==============================================='
+        PRINT '===============================================';
 	END CATCH
-END;
+END
 
